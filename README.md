@@ -103,6 +103,62 @@ G F <BR>
 <hr>
 ['0', '1', '2', '3', '4']
 <hr>
+
+## PROGRAM :
+```py
+# Breadth First Search using Queue
+
+from collections import deque
+
+def bfs(graph, start):
+    visited = []
+    queue = deque([start])
+
+    while queue:
+        node = queue.popleft()
+
+        if node not in visited:
+            visited.append(node)
+
+            # Add all unvisited neighbors
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    queue.append(neighbor)
+
+    return visited
+
+
+# -------- INPUT SECTION --------
+
+n, e = map(int, input().split())
+
+graph = {}
+
+for _ in range(e):
+    u, v = input().split()
+
+    if u not in graph:
+        graph[u] = []
+    if v not in graph:
+        graph[v] = []
+
+    graph[u].append(v)
+    graph[v].append(u)   # Undirected graph
+
+
+start_node = input("Enter start node: ")
+
+# -------- OUTPUT --------
+
+result = bfs(graph, start_node)
+print(result)
+```
+
+## OUTPUT :
+
+![alt text](image.png)
+
+
 <h3>Result:</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Breadth First Search for the same graph was done successfully.</p>
